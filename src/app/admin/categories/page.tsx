@@ -262,7 +262,7 @@ export default function AdminCategoriesPage() {
                   type="button"
                   onClick={() => {
                     setEditingId(null);
-                    setFormData({ name_tr: '', name_en: '', slug: '' });
+                    setFormData({ name_tr: '', name_en: '', slug: '', image_url: '' });
                   }}
                   className="px-6 py-3.5 rounded-2xl border-2 border-gray-300 hover:bg-gray-50 transition-all font-bold"
                 >

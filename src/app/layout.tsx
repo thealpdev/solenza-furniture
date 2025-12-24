@@ -8,6 +8,7 @@ import Footer from '@/components/Footer'
 import { Toaster } from 'react-hot-toast'
 import { usePathname } from 'next/navigation'
 import SnowEffect from '@/components/SnowEffect'
+import LEDGlow from '@/components/LEDGlow'
 import { FavoritesProvider } from '@/contexts/FavoritesContext'
 
 const lato = Lato({
@@ -34,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${lato.variable} ${playfair.variable}`}>
       <body className={lato.className}>
+        <LEDGlow />
         <SnowEffect />
         <FavoritesProvider>
           <LanguageProvider>

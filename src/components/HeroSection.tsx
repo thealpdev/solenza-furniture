@@ -37,15 +37,20 @@ export default function HeroSection() {
   return (
     <>
       <section className="relative h-[90vh] md:h-screen w-full overflow-hidden bg-black text-white">
-        {/* Parallax Background - Deep Navy Gradient (Sky Effect) */}
+        {/* Hero Background Image with Parallax */}
         <div
-          className="absolute inset-0 z-0 will-change-transform bg-gradient-to-b from-[#142850] to-[#071328]"
+          className="absolute inset-0 z-0 will-change-transform"
           style={{
             transform: `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0005})`,
           }}
         >
-          {/* Subtle Gradient Overlay for depth (keeping it close to solid) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1830] to-[#040b19] opacity-80"></div>
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}
+          />
+          {/* Dark Overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
         </div>
 
         {/* Content - Avant-Garde Typography */}

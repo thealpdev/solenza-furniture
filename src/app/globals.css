@@ -223,4 +223,26 @@
   .animate-breath-slow {
     animation: breathSlow 4s ease-in-out infinite;
   }
+
+  /* Radial gradient utility */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  /* Slow pulse for LED strips */
+  @keyframes pulseSlow {
+
+    0%,
+    100% {
+      opacity: 0.9;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 2s ease-in-out infinite;
+  }
 }

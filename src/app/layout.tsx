@@ -11,14 +11,6 @@ import SnowEffect from '@/components/SnowEffect'
 import LEDGlow from '@/components/LEDGlow'
 import { FavoritesProvider } from '@/contexts/FavoritesContext'
 
-export const metadata = {
-  title: 'Solenza - Luxury Furniture',
-  description: 'Beyond furniture. A statement.',
-  icons: {
-    icon: '/favicon.ico',
-  },
-}
-
 const lato = Lato({
   subsets: ['latin'],
   weight: ['100', '300', '400', '700', '900'],

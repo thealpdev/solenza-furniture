@@ -6,12 +6,12 @@ import ProductCard from '@/components/ProductCard'
 import Link from 'next/link'
 
 type ProductImage = {
-  id: number
+  id: string
   image_url: string
 }
 
 type Product = {
-  id: number
+  id: string
   title_tr: string
   title_en: string
   description_tr: string
@@ -34,7 +34,7 @@ export default function BestSellersPage() {
   const loadProducts = async () => {
     try {
       setLoading(true)
-      
+
       let query = supabase
         .from('products')
         .select('*, product_images(*)')
@@ -69,7 +69,7 @@ export default function BestSellersPage() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-300 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="max-w-6xl mx-auto px-4 py-16 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
             <span className="text-2xl">🏆</span>
@@ -114,7 +114,7 @@ export default function BestSellersPage() {
               </h2>
               <p className="text-sm text-gray-600">En çok tercih edilenler</p>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <label className="text-sm font-medium text-gray-700">Sırala:</label>
               <select
@@ -243,7 +243,7 @@ export default function BestSellersPage() {
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
           </div>
-          
+
           <div className="relative z-10">
             <span className="text-5xl mb-4 block">🎯</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">

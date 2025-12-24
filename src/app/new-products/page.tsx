@@ -6,12 +6,12 @@ import ProductCard from '@/components/ProductCard'
 import Link from 'next/link'
 
 type ProductImage = {
-  id: number
+  id: string
   image_url: string
 }
 
 type Product = {
-  id: number
+  id: string
   title_tr: string
   title_en: string
   description_tr: string

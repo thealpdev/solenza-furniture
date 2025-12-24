@@ -6,7 +6,18 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Product } from '@/types'
+
+type ProductImage = {
+    image_url: string
+}
+
+type Product = {
+    id: string
+    title_tr: string
+    title_en: string
+    price: number | null
+    product_images?: ProductImage[]
+}
 
 export default function FavoritesPage() {
     const { favorites, toggleFavorite } = useFavorites()

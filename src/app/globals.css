@@ -186,4 +186,41 @@
   .delay-1000 {
     animation-delay: 1000ms;
   }
+
+  /* LED Breathing Animations */
+  @keyframes breath {
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    50% {
+      opacity: 0.7;
+      transform: scaleX(1.1);
+    }
+  }
+
+  @keyframes breathSlow {
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    50% {
+      opacity: 0.5;
+      transform: scaleX(1.15);
+    }
+  }
+
+  .animate-breath {
+    animation: breath 3s ease-in-out infinite;
+  }
+
+  .animate-breath-slow {
+    animation: breathSlow 4s ease-in-out infinite;
+  }
 }

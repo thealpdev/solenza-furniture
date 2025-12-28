@@ -9,11 +9,31 @@
         "favorites": "Favoriler",
         "newProducts": "Yeni Ürünler",
         "bestSellers": "Çok Satanlar",
-        "stores": "Mağazalar"
+        "stores": "Mağazalar",
+        "explore": "Keşfet",
+        "search": "Ara...",
+        "collections": "Koleksiyonlar",
+        "specialCollection": "Özel Koleksiyon",
+        "newYearDiscounts": "Yılbaşı İndirimleri",
+        "viewCollection": "Koleksiyonu İncele"
     },
     "hero": {
         "title": "The Art of Living",
         "subtitle": "Eviniz için seçkin mobilya koleksiyonları",
+        "shopNow": "Alışverişe Başla"
+    },
+    "categories": {
+        "title": "Koleksiyonlar",
+        "subtitle": "Evinizin her köşesi için özenle seçilmiş, şıklığı ve konforu bir araya getiren tasarımlar.",
+        "viewCollection": "Koleksiyonu İncele"
+    },
+    "campaigns": {
+        "title": "Kampanyalar",
+        "subtitle": "Özel fırsatlar ve indirimlerden yararlanın",
+        "active": "Aktif Kampanyalar",
+        "upcoming": "Yakında",
+        "ended": "Sona Erdi",
+        "validUntil": "Geçerlilik",
         "shopNow": "Alışverişe Başla"
     },
     "products": {

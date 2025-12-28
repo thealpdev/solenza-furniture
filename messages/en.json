@@ -9,11 +9,31 @@
         "favorites": "Favorites",
         "newProducts": "New Arrivals",
         "bestSellers": "Best Sellers",
-        "stores": "Stores"
+        "stores": "Stores",
+        "explore": "Explore",
+        "search": "Search...",
+        "collections": "Collections",
+        "specialCollection": "Special Collection",
+        "newYearDiscounts": "New Year Sale",
+        "viewCollection": "View Collection"
     },
     "hero": {
         "title": "The Art of Living",
         "subtitle": "Exquisite furniture collections for your home",
+        "shopNow": "Shop Now"
+    },
+    "categories": {
+        "title": "Collections",
+        "subtitle": "Carefully selected designs that combine elegance and comfort for every corner of your home.",
+        "viewCollection": "View Collection"
+    },
+    "campaigns": {
+        "title": "Campaigns",
+        "subtitle": "Take advantage of special offers and discounts",
+        "active": "Active Campaigns",
+        "upcoming": "Coming Soon",
+        "ended": "Ended",
+        "validUntil": "Valid Until",
         "shopNow": "Shop Now"
     },
     "products": {

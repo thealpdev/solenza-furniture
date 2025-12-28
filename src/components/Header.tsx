@@ -108,7 +108,9 @@ export default function Header({
                 <span className="block w-5 h-0.5 bg-current transition-all group-hover:w-full group-hover:bg-holiday-red"></span>
                 <span className="block w-8 h-0.5 bg-current transition-all group-hover:w-full group-hover:bg-holiday-red"></span>
               </div>
-              <span className="hidden md:block font-serif italic text-lg tracking-wide group-hover:translate-x-1 transition-transform">Keşfet</span>
+              <span className="hidden md:block font-serif italic text-lg tracking-wide group-hover:translate-x-1 transition-transform">
+                {lang === 'tr' ? 'Keşfet' : 'Explore'}
+              </span>
             </button>
 
             <div className={`hidden md:flex items-center gap-2 border-b pb-0.5 transition-colors ${scrolled ? 'border-white/10 hover:border-white/30' : 'border-transparent hover:border-white/50'}`}>
@@ -117,7 +119,7 @@ export default function Header({
               </svg>
               <input
                 type="text"
-                placeholder="Ara..."
+                placeholder={lang === 'tr' ? 'Ara...' : 'Search...'}
                 className={`bg-transparent outline-none text-sm w-24 focus:w-48 transition-all duration-500 font-light ${scrolled ? 'text-white placeholder:text-white/40' : 'text-white placeholder:text-white/50'}`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -198,7 +200,7 @@ export default function Header({
           {/* Header */}
           <div className="flex items-center justify-between p-10 border-b border-white/10">
             <div>
-              <span className="block text-xs uppercase tracking-[0.3em] text-white/60 mb-1">Keşfet</span>
+              <span className="block text-xs uppercase tracking-[0.3em] text-white/60 mb-1">{lang === 'tr' ? 'Keşfet' : 'Explore'}</span>
               <span className="font-serif italic text-2xl text-white">Solenza</span>
             </div>
             <button
@@ -238,9 +240,9 @@ export default function Header({
           <div className="p-10 border-t border-white/10 bg-black/20 backdrop-blur-md">
             <div className="flex justify-between items-end">
               <div className="space-y-2">
-                <h4 className="text-holiday-gold text-sm font-serif italic">Özel Koleksiyon</h4>
+                <h4 className="text-holiday-gold text-sm font-serif italic">{lang === 'tr' ? 'Özel Koleksiyon' : 'Special Collection'}</h4>
                 <Link href="/campaigns" onClick={() => setMobileMenuOpen(false)} className="block text-white text-lg hover:underline decoration-1 underline-offset-4">
-                  Yılbaşı İndirimleri &rarr;
+                  {lang === 'tr' ? 'Yılbaşı İndirimleri' : 'New Year Sale'} &rarr;
                 </Link>
               </div>
               <div className="flex gap-4">

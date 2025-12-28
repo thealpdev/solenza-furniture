@@ -1,0 +1,86 @@
+{
+    "nav": {
+        "home": "Home",
+        "products": "Products",
+        "categories": "Categories",
+        "campaigns": "Campaigns",
+        "about": "About Us",
+        "contact": "Contact",
+        "favorites": "Favorites",
+        "newProducts": "New Arrivals",
+        "bestSellers": "Best Sellers",
+        "stores": "Stores"
+    },
+    "hero": {
+        "title": "The Art of Living",
+        "subtitle": "Exquisite furniture collections for your home",
+        "shopNow": "Shop Now"
+    },
+    "products": {
+        "filter": "Filter",
+        "sort": "Sort",
+        "category": "Category",
+        "price": "Price",
+        "availability": "Availability",
+        "inStock": "In Stock",
+        "preOrder": "Pre-Order",
+        "clearFilters": "Clear Filters",
+        "recommended": "Recommended",
+        "priceAsc": "Price: Low to High",
+        "priceDesc": "Price: High to Low",
+        "newest": "Newest",
+        "resultsCount": "{count} Products Listed",
+        "noResults": "No products found matching filters",
+        "noResultsDesc": "Try changing your filters",
+        "previous": "Previous",
+        "next": "Next",
+        "viewDetails": "View Details",
+        "addToFavorites": "Add to Favorites",
+        "removeFromFavorites": "Remove from Favorites"
+    },
+    "campaign": {
+        "label": "Campaign",
+        "details": "Details"
+    },
+    "newsletter": {
+        "title": "Get",
+        "titleHighlight": "inspired",
+        "titleEnd": "by design.",
+        "description": "Be the first to know about new collections, exclusive discounts, and decoration trends.",
+        "weekly": "Weekly Newsletter",
+        "discounts": "Exclusive Discounts",
+        "trends": "Trends",
+        "placeholder": "Your email address",
+        "subscribe": "Subscribe"
+    },
+    "footer": {
+        "company": "Company",
+        "aboutUs": "About Us",
+        "stores": "Our Stores",
+        "career": "Career",
+        "legal": "Legal",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "help": "Help",
+        "contact": "Contact",
+        "faq": "FAQ",
+        "shipping": "Shipping & Delivery",
+        "returns": "Return Policy",
+        "followUs": "Follow Us",
+        "allRightsReserved": "All rights reserved."
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "tryAgain": "Try Again",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "add": "Add",
+        "search": "Search",
+        "close": "Close",
+        "yes": "Yes",
+        "no": "No"
+    }
+}

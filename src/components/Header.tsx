@@ -7,6 +7,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useFavorites } from "@/contexts/FavoritesContext";
 import { CATEGORIES, CATEGORY_IMAGES } from "@/lib/constants";
 
+import LanguageSwitcher from './LanguageSwitcher';
+
 interface HeaderProps {
   activeCategory?: string;
   onCategorySelect?: (slug: string) => void;
@@ -136,11 +138,9 @@ export default function Header({
 
           {/* RIGHT: Actions */}
           <div className="flex items-center gap-6">
-            {/* Language */}
-            <div className="hidden md:flex items-center gap-1 font-light text-sm">
-              <button onClick={() => handleLangChange("tr")} className={`${lang === 'tr' ? (scrolled ? 'text-white font-medium' : 'text-white font-medium') : (scrolled ? 'text-white/40' : 'text-white/50')}`}>TR</button>
-              <span className={`${scrolled ? 'text-white/20' : 'text-white/30'}`}>|</span>
-              <button onClick={() => handleLangChange("en")} className={`${lang === 'en' ? (scrolled ? 'text-white font-medium' : 'text-white font-medium') : (scrolled ? 'text-white/40' : 'text-white/50')}`}>EN</button>
+            {/* Language Switcher */}
+            <div className="hidden md:block">
+              <LanguageSwitcher />
             </div>
 
             {/* Favorites Icon */}

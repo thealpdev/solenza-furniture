@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import ProductCard from '@/components/ProductCard'
 import HeroSection from '@/components/HeroSection'
 import BentoGrid from '@/components/BentoGrid'
+import CampaignBanner from '@/components/CampaignBanner'
 
 
 type ProductImage = {
@@ -232,6 +233,9 @@ export default function HomePage() {
     <main className="bg-white min-h-screen">
       {/* Hero Section */}
       <HeroSection />
+
+      {/* Campaign Banner */}
+      <CampaignBanner />
 
       {/* Error Message */}
       {error && (

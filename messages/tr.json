@@ -1,0 +1,86 @@
+{
+    "nav": {
+        "home": "Ana Sayfa",
+        "products": "Ürünler",
+        "categories": "Kategoriler",
+        "campaigns": "Kampanyalar",
+        "about": "Hakkımızda",
+        "contact": "İletişim",
+        "favorites": "Favoriler",
+        "newProducts": "Yeni Ürünler",
+        "bestSellers": "Çok Satanlar",
+        "stores": "Mağazalar"
+    },
+    "hero": {
+        "title": "The Art of Living",
+        "subtitle": "Eviniz için seçkin mobilya koleksiyonları",
+        "shopNow": "Alışverişe Başla"
+    },
+    "products": {
+        "filter": "Filtrele",
+        "sort": "Sırala",
+        "category": "Kategori",
+        "price": "Fiyat",
+        "availability": "Stok Durumu",
+        "inStock": "Stoktakiler",
+        "preOrder": "Ön Sipariş",
+        "clearFilters": "Filtreleri Temizle",
+        "recommended": "Önerilen",
+        "priceAsc": "Artan Fiyat",
+        "priceDesc": "Azalan Fiyat",
+        "newest": "En Yeniler",
+        "resultsCount": "{count} Ürün Listelendi",
+        "noResults": "Filtrelere uygun ürün bulunamadı",
+        "noResultsDesc": "Filtreleri değiştirerek tekrar deneyin",
+        "previous": "Önceki",
+        "next": "Sonraki",
+        "viewDetails": "Detayları Gör",
+        "addToFavorites": "Favorilere Ekle",
+        "removeFromFavorites": "Favorilerden Çıkar"
+    },
+    "campaign": {
+        "label": "Kampanya",
+        "details": "Detaylar"
+    },
+    "newsletter": {
+        "title": "Tasarım dünyasından",
+        "titleHighlight": "ilham",
+        "titleEnd": "alın.",
+        "description": "Yeni koleksiyonlar, özel indirimler ve dekorasyon trendleri hakkında ilk siz haberdar olun.",
+        "weekly": "Haftalık Bülten",
+        "discounts": "Özel İndirimler",
+        "trends": "Trendler",
+        "placeholder": "E-posta adresiniz",
+        "subscribe": "Abone Ol"
+    },
+    "footer": {
+        "company": "Şirket",
+        "aboutUs": "Hakkımızda",
+        "stores": "Mağazalarımız",
+        "career": "Kariyer",
+        "legal": "Yasal",
+        "privacy": "Gizlilik Politikası",
+        "terms": "Kullanım Koşulları",
+        "help": "Yardım",
+        "contact": "İletişim",
+        "faq": "Sıkça Sorulan Sorular",
+        "shipping": "Kargo ve Teslimat",
+        "returns": "İade Koşulları",
+        "followUs": "Bizi Takip Edin",
+        "allRightsReserved": "Tüm hakları saklıdır."
+    },
+    "common": {
+        "loading": "Yükleniyor...",
+        "error": "Bir hata oluştu",
+        "tryAgain": "Tekrar Dene",
+        "save": "Kaydet",
+        "cancel": "İptal",
+        "delete": "Sil",
+        "edit": "Düzenle",
+        "add": "Ekle",
+        "search": "Ara",
+        "close": "Kapat",
+        "yes": "Evet",
+        "no": "Hayır"
+    }
+}

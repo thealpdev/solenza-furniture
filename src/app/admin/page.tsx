@@ -195,29 +195,36 @@ export default function AdminDashboard() {
             </div>
           </Link>
 
-          <div className="relative bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-3xl shadow-lg border-2 border-purple-200 overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-purple-100 rounded-full blur-3xl opacity-50"></div>
+          <Link
+            href="/admin/campaigns"
+            className="group relative bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 hover:border-purple-300 hover:shadow-2xl transition-all duration-300 overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-40 h-40 bg-purple-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <div className="relative z-10">
               <div className="flex items-start justify-between mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center text-4xl shadow-xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-4xl shadow-xl group-hover:scale-110 group-hover:rotate-6 transition-all">
                   🎯
                 </div>
-                <span className="px-3 py-1.5 bg-purple-200 text-purple-700 text-xs font-bold rounded-xl">YAKINDA</span>
+                <div className="p-2 bg-purple-50 rounded-xl group-hover:bg-purple-100 transition-colors">
+                  <svg className="w-6 h-6 text-purple-600 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-700 mb-3">
-                Kampanyalar
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
+                Kampanyaları Yönet
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Kampanya özelliği çok yakında eklenecek. İndirim ve promosyonları yönetin.
+                İndirim ve promosyonları yönetin, kampanya ekleyin ve düzenleyin.
               </p>
-              <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-xl text-sm font-semibold cursor-not-allowed">
+              <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-700 rounded-xl text-sm font-semibold group-hover:bg-purple-600 group-hover:text-white transition-all">
+                <span>Kampanyalara Git</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
-                <span>Kilitli</span>
               </div>
             </div>
-          </div>
+          </Link>
 
           <div className="relative bg-gradient-to-br from-orange-50 to-yellow-50 p-8 rounded-3xl shadow-lg border-2 border-orange-200 overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-orange-100 rounded-full blur-3xl opacity-50"></div>

@@ -16,7 +16,11 @@ export interface Product {
   category_id: string | null
   price: number | null
   show_price: boolean
-  status: 'active' | 'inactive'
+  status: 'active' | 'inactive' | 'draft'
+  stock_status: 'in_stock' | 'out_of_stock' | 'pre_order'
+  is_featured: boolean
+  is_new: boolean
+  is_bestseller: boolean
   created_at: string
   translations: {
     tr?: { title: string; description?: string; specs?: string }

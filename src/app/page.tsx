@@ -6,6 +6,8 @@ import ProductCard from '@/components/ProductCard'
 import HeroSection from '@/components/HeroSection'
 import BentoGrid from '@/components/BentoGrid'
 import CampaignBanner from '@/components/CampaignBanner'
+import StatementCollection from '@/components/StatementCollection'
+import DiscountStrip from '@/components/DiscountStrip'
 
 
 type ProductImage = {
@@ -249,6 +251,11 @@ export default function HomePage() {
       {/* Bento Grid Kategoriler */}
       <BentoGrid />
 
+      {/* Discount Strip - Separator */}
+      <div className="my-8">
+        <DiscountStrip />
+      </div>
+
       {/* Ana İçerik - Full Width Ürünler */}
       <section className="max-w-[1400px] mx-auto px-6 py-8">
 
@@ -481,45 +488,44 @@ export default function HomePage() {
 
       {/* Bank Logos Removed as per request */}
 
-      {/* Newsletter - High Fashion Dark */}
-      <section className="bg-gradient-to-b from-[#020610] to-[#071328] text-white py-24 px-6 md:px-12 relative overflow-hidden">
-        {/* Subtle Texture */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-900/10 rounded-full mix-blend-screen filter blur-3xl opacity-20 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-900/10 rounded-full mix-blend-screen filter blur-3xl opacity-20 pointer-events-none"></div>
+      {/* Statement Collection - Dynamic Content from Admin */}
+      <StatementCollection />
+
+      {/* Newsletter - Minimalist Light */}
+      <section className="bg-gray-50 text-gray-900 py-24 px-6 md:px-12 relative overflow-hidden border-t border-gray-100">
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <span className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-6 block">Solenza World</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-red-600 mb-6 block font-medium">Solenza World</span>
           <h2 className="font-serif text-4xl md:text-5xl mb-4 leading-tight">
             Tasarım dünyasından <br /> <span className="italic text-gray-500">ilham</span> alın.
           </h2>
-          <p className="text-gray-400 font-light mb-8 max-w-lg mx-auto">
+          <p className="text-gray-600 font-light mb-8 max-w-lg mx-auto leading-relaxed">
             Yeni koleksiyonlar, özel indirimler ve dekorasyon trendleri hakkında ilk siz haberdar olun.
           </p>
 
           <div className="flex justify-center flex-wrap gap-4 md:gap-8 mb-10 text-[10px] uppercase tracking-widest text-gray-500 font-medium">
             <span className="flex items-center gap-2">
-              <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
+              <span className="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>
               Haftalık Bülten
             </span>
             <span className="flex items-center gap-2">
-              <span className="w-1 h-1 bg-purple-500 rounded-full"></span>
+              <span className="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>
               Özel İndirimler
             </span>
             <span className="flex items-center gap-2">
-              <span className="w-1 h-1 bg-gold-400 rounded-full bg-[#D4AF37]"></span> {/* Gold color */}
+              <span className="w-1.5 h-1.5 bg-gray-900 rounded-full"></span>
               Trendler
             </span>
           </div>
 
-          <form className="flex flex-col md:flex-row gap-0 max-w-lg mx-auto border-b border-white/20 focus-within:border-white/60 transition-colors duration-300 relative group">
+          <form className="flex flex-col md:flex-row gap-0 max-w-lg mx-auto border-b border-gray-300 focus-within:border-black transition-colors duration-300 relative group">
             <input
               type="email"
               placeholder="E-posta adresiniz"
-              className="flex-1 bg-transparent px-4 py-4 outline-none placeholder:text-gray-500 font-light text-white"
+              className="flex-1 bg-transparent px-4 py-4 outline-none placeholder:text-gray-400 font-light text-gray-900"
             />
-            <button type="button" className="px-8 py-4 uppercase tracking-widest text-xs font-semibold text-white/70 hover:text-white transition-colors relative">
+            <button type="button" className="px-8 py-4 uppercase tracking-widest text-xs font-bold text-gray-900 hover:text-red-600 transition-colors relative">
               <span className="relative z-10">Abone Ol</span>
-              <div className="absolute inset-x-0 bottom-0 h-[1px] bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
           </form>
         </div>

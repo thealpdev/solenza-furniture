@@ -3,12 +3,15 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import Link from 'next/link'
-import { X } from 'lucide-react'
+import { X, ArrowRight } from 'lucide-react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 type Campaign = {
     id: string
     image_url: string | null
     show_on_homepage: boolean
+    start_date: string | null
+    end_date: string | null
     translations: {
         tr?: { title: string; description?: string }
         en?: { title: string; description?: string }
@@ -19,22 +22,20 @@ export default function CampaignBanner() {
     const [campaigns, setCampaigns] = useState<Campaign[]>([])
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isVisible, setIsVisible] = useState(true)
-    const [lang, setLang] = useState<'tr' | 'en'>('tr')
+    const { language } = useLanguage()
+    const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
-        // Get language from localStorage or default to 'tr'
-        const savedLang = (localStorage.getItem('language') as 'tr' | 'en') || 'tr'
-        setLang(savedLang)
-
+        setMounted(true)
         loadCampaigns()
     }, [])
 
+    // Auto-rotate campaigns
     useEffect(() => {
         if (campaigns.length > 1) {
             const interval = setInterval(() => {
                 setCurrentIndex((prev) => (prev + 1) % campaigns.length)
-            }, 5000) // Change every 5 seconds
-
+            }, 6000)
             return () => clearInterval(interval)
         }
     }, [campaigns.length])
@@ -75,87 +76,86 @@ export default function CampaignBanner() {
         }
     }
 
-    if (!isVisible || campaigns.length === 0) return null
+    if (!isVisible || campaigns.length === 0 || !mounted) return null
 
     const currentCampaign = campaigns[currentIndex]
-    const translation = currentCampaign.translations[lang] || currentCampaign.translations.tr
+    const translation = currentCampaign.translations[language] || currentCampaign.translations.tr
 
     return (
-        <div className="relative bg-gradient-to-r from-red-600 via-red-700 to-orange-600 text-white overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-300 rounded-full blur-3xl"></div>
-            </div>
+        <div className="relative w-full bg-black text-white overflow-hidden shadow-2xl border-b border-gray-800">
+            {/* Background Image Layer */}
+            {currentCampaign.image_url ? (
+                <div
+                    className="absolute inset-0 bg-cover bg-center transition-all duration-1000 transform hover:scale-105"
+                    style={{ backgroundImage: `url(${currentCampaign.image_url})` }}
+                >
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent/50"></div>
+                </div>
+            ) : (
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-purple-900 to-black"></div>
+            )}
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="py-4 flex items-center justify-between">
-                    <div className="flex-1 flex items-center">
-                        {currentCampaign.image_url && (
-                            <div className="hidden sm:block mr-4">
-                                <img
-                                    src={currentCampaign.image_url}
-                                    alt={translation?.title || 'Campaign'}
-                                    className="w-16 h-16 rounded-xl object-cover shadow-lg"
-                                />
-                            </div>
-                        )}
+            {/* Content Container */}
+            <div className="relative z-10 max-w-[1400px] mx-auto px-6 py-6 md:py-8 lg:py-10 flex flex-col md:flex-row items-center justify-between gap-6">
 
-                        <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                                <span className="px-2 py-0.5 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider">
-                                    🎉 {lang === 'tr' ? 'Kampanya' : 'Campaign'}
-                                </span>
-                                {campaigns.length > 1 && (
-                                    <span className="text-xs text-white/70">
-                                        {currentIndex + 1} / {campaigns.length}
-                                    </span>
-                                )}
-                            </div>
-                            <h3 className="text-lg sm:text-xl font-bold mb-1">
-                                {translation?.title}
-                            </h3>
-                            {translation?.description && (
-                                <p className="text-sm text-white/90 hidden sm:block">
-                                    {translation.description}
-                                </p>
-                            )}
-                        </div>
-
-                        <Link
-                            href="/campaigns"
-                            className="ml-4 px-6 py-2 bg-white text-red-600 rounded-xl font-bold text-sm hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-                        >
-                            {lang === 'tr' ? 'Detaylar' : 'Details'}
-                        </Link>
+                <div className="flex-1 text-center md:text-left space-y-3">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-sm mx-auto md:mx-0">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-holiday-red opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-holiday-red"></span>
+                        </span>
+                        <span className="text-xs font-bold uppercase tracking-widest text-white/90">
+                            {language === 'tr' ? 'Özel Fırsat' : 'Special Offer'}
+                        </span>
                     </div>
+
+                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif font-medium leading-tight text-white drop-shadow-lg">
+                        {translation?.title}
+                    </h2>
+
+                    {translation?.description && (
+                        <p className="text-sm md:text-base text-gray-300 font-light max-w-2xl mx-auto md:mx-0 line-clamp-2 md:line-clamp-1">
+                            {translation.description}
+                        </p>
+                    )}
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center gap-4 shrink-0">
+                    <Link
+                        href={`/campaigns/${currentCampaign.id}`}
+                        className="group relative px-8 py-3 bg-white text-black font-bold uppercase tracking-widest text-xs overflow-hidden rounded-full transition-all hover:bg-gray-200"
+                    >
+                        <span className="relative z-10 flex items-center gap-2">
+                            {language === 'tr' ? 'İncele' : 'View Details'}
+                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </span>
+                    </Link>
 
                     <button
                         onClick={() => setIsVisible(false)}
-                        className="ml-4 p-2 hover:bg-white/10 rounded-lg transition-colors"
-                        aria-label="Close banner"
+                        className="p-2 text-white/50 hover:text-white transition-colors bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-sm"
+                        aria-label="Close"
                     >
                         <X className="w-5 h-5" />
                     </button>
                 </div>
-
-                {/* Dots indicator for multiple campaigns */}
-                {campaigns.length > 1 && (
-                    <div className="flex justify-center gap-2 pb-3">
-                        {campaigns.map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setCurrentIndex(index)}
-                                className={`w-2 h-2 rounded-full transition-all ${index === currentIndex
-                                        ? 'bg-white w-8'
-                                        : 'bg-white/40 hover:bg-white/60'
-                                    }`}
-                                aria-label={`Go to campaign ${index + 1}`}
-                            />
-                        ))}
-                    </div>
-                )}
             </div>
+
+            {/* Pagination Dots (if multiple) */}
+            {campaigns.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                    {campaigns.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => setCurrentIndex(idx)}
+                            className={`h-1 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/30 hover:bg-white/50'
+                                }`}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     )
 }

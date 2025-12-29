@@ -161,181 +161,217 @@ export default function AdminCampaignsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header Card */}
-      <div className="bg-gradient-to-r from-purple-600 to-purple-700 rounded-3xl p-8 shadow-xl">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-              <span className="text-3xl">🎯</span>
+      <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl p-8 shadow-xl text-white">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-lg">
+              <span className="text-4xl">✨</span>
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white">Kampanyalar</h1>
-              <p className="text-white/80 text-sm mt-1">Kampanyaları yönetin ve yeni kampanya ekleyin</p>
+              <h1 className="text-3xl font-bold">Kampanya Yönetimi</h1>
+              <p className="text-white/80 mt-1">Özel teklifler, evlilik paketleri ve sezonluk indirimler oluşturun</p>
             </div>
           </div>
           <button
             onClick={() => setShowForm(!showForm)}
-            className={`px-6 py-3 rounded-2xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 ${
-              showForm 
-                ? 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30' 
-                : 'bg-white text-purple-700 hover:bg-gray-50'
-            }`}
+            className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg transform hover:scale-105 ${showForm
+                ? 'bg-white/20 backdrop-blur-md hover:bg-white/30 text-white'
+                : 'bg-white text-indigo-600 hover:bg-gray-50'
+              }`}
           >
-            {showForm ? '✕ İptal' : '+ Yeni Kampanya'}
+            {showForm ? '✕ İptal' : '+ Yeni Kampanya Oluştur'}
           </button>
         </div>
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-6">
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Başlık (TR) 🇹🇷</label>
-              <input
-                type="text"
-                value={formData.title_tr}
-                onChange={(e) => setFormData({ ...formData, title_tr: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                placeholder="Yeni Yıl Kampanyası"
-                required
-              />
+        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 space-y-8 animate-fadeIn">
+          <div className="border-b border-gray-100 pb-4">
+            <h2 className="text-xl font-bold text-gray-900">Kampanya Detayları</h2>
+            <p className="text-gray-500 text-sm">Yeni bir kampanya veya paket paketi oluşturun</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Kampanya Başlığı (TR) 🇹🇷</label>
+                <input
+                  type="text"
+                  value={formData.title_tr}
+                  onChange={(e) => setFormData({ ...formData, title_tr: e.target.value })}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                  placeholder="Örn: 2024 Evlilik Paketi"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Campaign Title (EN) 🇬🇧</label>
+                <input
+                  type="text"
+                  value={formData.title_en}
+                  onChange={(e) => setFormData({ ...formData, title_en: e.target.value })}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                  placeholder="Ex: 2024 Wedding Package"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-2">Başlangıç Tarihi</label>
+                  <input
+                    type="date"
+                    value={formData.start_date}
+                    onChange={(e) => setFormData({ ...formData, start_date: e.target.value })}
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-2">Bitiş Tarihi</label>
+                  <input
+                    type="date"
+                    value={formData.end_date}
+                    onChange={(e) => setFormData({ ...formData, end_date: e.target.value })}
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <input
+                  type="checkbox"
+                  checked={formData.show_on_homepage}
+                  onChange={(e) => setFormData({ ...formData, show_on_homepage: e.target.checked })}
+                  className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                />
+                <label className="text-sm font-semibold text-gray-900">Bu kampanyayı ana sayfada göster</label>
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Title (EN) 🇬🇧</label>
-              <input
-                type="text"
-                value={formData.title_en}
-                onChange={(e) => setFormData({ ...formData, title_en: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                placeholder="New Year Campaign"
-                required
-              />
+
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Açıklama (TR) 🇹🇷</label>
+                <textarea
+                  value={formData.description_tr}
+                  onChange={(e) => setFormData({ ...formData, description_tr: e.target.value })}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                  rows={4}
+                  placeholder="Paket içeriği ve detaylar..."
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Description (EN) 🇬🇧</label>
+                <textarea
+                  value={formData.description_en}
+                  onChange={(e) => setFormData({ ...formData, description_en: e.target.value })}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                  rows={4}
+                  placeholder="Package details..."
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Kampanya Görseli</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setFormData({ ...formData, image: e.target.files?.[0] || null })}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                />
+                <p className="mt-2 text-xs text-gray-500">Önerilen boyut: 1200x600px. JPG, PNG formatları.</p>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Açıklama (TR) 🇹🇷</label>
-              <textarea
-                value={formData.description_tr}
-                onChange={(e) => setFormData({ ...formData, description_tr: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                rows={4}
-                placeholder="Kampanya açıklaması..."
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Description (EN) 🇬🇧</label>
-              <textarea
-                value={formData.description_en}
-                onChange={(e) => setFormData({ ...formData, description_en: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                rows={4}
-                placeholder="Campaign description..."
-              />
-            </div>
+          <div className="flex justify-end pt-6 border-t border-gray-100">
+            <button
+              type="submit"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-indigo-200"
+            >
+              💾 Kampanyayı Kaydet
+            </button>
           </div>
-
-          <div className="grid grid-cols-3 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Başlangıç Tarihi</label>
-              <input
-                type="date"
-                value={formData.start_date}
-                onChange={(e) => setFormData({ ...formData, start_date: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Bitiş Tarihi</label>
-              <input
-                type="date"
-                value={formData.end_date}
-                onChange={(e) => setFormData({ ...formData, end_date: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">Görsel</label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setFormData({ ...formData, image: e.target.files?.[0] || null })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-3">
-            <input
-              type="checkbox"
-              checked={formData.show_on_homepage}
-              onChange={(e) => setFormData({ ...formData, show_on_homepage: e.target.checked })}
-              className="w-5 h-5 text-purple-600 rounded focus:ring-purple-500"
-            />
-            <label className="text-sm font-semibold text-gray-900">Ana sayfada göster</label>
-          </div>
-
-          <button
-            type="submit"
-            className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            💾 Kampanyayı Kaydet
-          </button>
         </form>
       )}
 
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <table className="w-full">
-          <thead className="bg-gray-50 border-b border-gray-200">
-            <tr>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Başlık</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Başlangıç</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Bitiş</th>
-              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ana Sayfa</th>
-              <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">İşlemler</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {campaigns.length === 0 ? (
+      <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="p-6 border-b border-gray-100">
+          <h3 className="font-bold text-gray-900">Aktif Kampanyalar</h3>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50/50">
               <tr>
-                <td colSpan={5} className="px-6 py-12 text-center">
-                  <div className="text-6xl mb-4">🎯</div>
-                  <p className="text-gray-500 font-medium">Henüz kampanya eklenmemiş</p>
-                </td>
+                <th className="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Kampanya</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Süre</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Durum</th>
+                <th className="px-6 py-4 text-right text-xs font-bold text-gray-500 uppercase tracking-wider">İşlemler</th>
               </tr>
-            ) : (
-              campaigns.map(campaign => (
-                <tr key={campaign.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-gray-900">{campaign.translations.tr?.title}</td>
-                  <td className="px-6 py-4 text-gray-600">{campaign.start_date ? new Date(campaign.start_date).toLocaleDateString('tr-TR') : '-'}</td>
-                  <td className="px-6 py-4 text-gray-600">{campaign.end_date ? new Date(campaign.end_date).toLocaleDateString('tr-TR') : '-'}</td>
-                  <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      campaign.show_on_homepage ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
-                    }`}>
-                      {campaign.show_on_homepage ? 'Evet' : 'Hayır'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right space-x-3">
-                    <button
-                      onClick={() => handleEdit(campaign)}
-                      className="text-red-600 hover:text-red-700 font-medium transition-colors"
-                    >
-                      ✏️ Düzenle
-                    </button>
-                    <button
-                      onClick={() => handleDelete(campaign.id)}
-                      className="text-red-600 hover:text-red-700 font-medium transition-colors"
-                    >
-                      🗑️ Sil
-                    </button>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {campaigns.length === 0 ? (
+                <tr>
+                  <td colSpan={4} className="px-6 py-16 text-center">
+                    <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">📭</div>
+                    <h3 className="text-lg font-bold text-gray-900">Henüz kampanya yok</h3>
+                    <p className="text-gray-500 mt-1">Yeni bir kampanya oluşturarak başlayın.</p>
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                campaigns.map(campaign => (
+                  <tr key={campaign.id} className="hover:bg-gray-50/50 transition-colors group">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-4">
+                        {campaign.image_url ? (
+                          <img src={campaign.image_url} alt="" className="w-16 h-12 object-cover rounded-lg shadow-sm" />
+                        ) : (
+                          <div className="w-16 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
+                            <span className="text-xs">No Img</span>
+                          </div>
+                        )}
+                        <div>
+                          <p className="font-bold text-gray-900">{campaign.translations.tr?.title}</p>
+                          <p className="text-xs text-gray-500 truncate max-w-[200px]">{campaign.translations.tr?.description}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="text-sm text-gray-600">
+                        <p><span className="text-xs text-gray-400">Başlangıç:</span> {campaign.start_date ? new Date(campaign.start_date).toLocaleDateString('tr-TR') : '-'}</p>
+                        <p><span className="text-xs text-gray-400">Bitiş:</span> {campaign.end_date ? new Date(campaign.end_date).toLocaleDateString('tr-TR') : '-'}</p>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${campaign.show_on_homepage
+                          ? 'bg-green-50 text-green-700 border-green-100'
+                          : 'bg-gray-50 text-gray-600 border-gray-100'
+                        }`}>
+                        {campaign.show_on_homepage ? '🟢 Yayında' : '⚪ Pasif'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button
+                          onClick={() => handleEdit(campaign)}
+                          className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                          title="Düzenle"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          onClick={() => handleDelete(campaign.id)}
+                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          title="Sil"
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   )

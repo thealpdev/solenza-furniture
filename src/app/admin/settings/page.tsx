@@ -4,6 +4,19 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import toast from 'react-hot-toast'
 import ImageUploader from '@/components/ImageUploader'
+import { Tab } from '@headlessui/react'
+import {
+  BuildingStorefrontIcon,
+  PhoneIcon,
+  MapPinIcon,
+  InformationCircleIcon,
+  PhotoIcon,
+  GlobeAltIcon
+} from '@heroicons/react/24/outline'
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 export default function AdminSettingsPage() {
   const [settings, setSettings] = useState({
@@ -18,6 +31,12 @@ export default function AdminSettingsPage() {
     facebook: '',
     instagram: '',
     twitter: '',
+    hero_title_tr: '',
+    hero_subtitle_tr: '',
+    hero_image_url: '',
+    statement_title_tr: '',
+    statement_desc_tr: '',
+    statement_image_url: ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -36,7 +55,7 @@ export default function AdminSettingsPage() {
         data.forEach(item => {
           settingsObj[item.key] = item.value || ''
         })
-        setSettings(settingsObj)
+        setSettings(prev => ({ ...prev, ...settingsObj }))
       }
     } catch (error: any) {
       toast.error(`Ayarlar yüklenemedi: ${error.message}`)
@@ -48,7 +67,6 @@ export default function AdminSettingsPage() {
     setLoading(true)
 
     try {
-      // Upsert each setting
       for (const [key, value] of Object.entries(settings)) {
         const { error } = await supabase
           .from('settings')
@@ -75,237 +93,287 @@ export default function AdminSettingsPage() {
     setSettings(prev => ({ ...prev, [key]: value }))
   }
 
+  const tabs = [
+    { name: 'Genel Bilgiler', icon: BuildingStorefrontIcon },
+    { name: 'İletişim & Adres', icon: MapPinIcon },
+    { name: 'Hakkımızda', icon: InformationCircleIcon },
+    { name: 'Medya & Görseller', icon: PhotoIcon },
+    { name: 'Sosyal Medya', icon: GlobeAltIcon },
+  ]
+
   return (
-    <div className="space-y-8">
+    <div className="max-w-6xl mx-auto space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-dark">Ayarlar</h1>
-        <p className="text-gray-600 mt-1">Mağaza bilgilerini ve iletişim detaylarını yönetin</p>
+        <h1 className="text-3xl font-bold text-gray-900">Ayarlar</h1>
+        <p className="text-gray-500 mt-2">Mağazanızı yönetmek için gerekli tüm yapılandırmalar</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Şirket Bilgileri */}
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-semibold text-dark mb-6">Şirket Bilgileri</h2>
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Mağaza Adı</label>
-              <input
-                type="text"
-                value={settings.company_name}
-                onChange={(e) => handleChange('company_name', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                placeholder="Solenza"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">E-posta</label>
-              <input
-                type="email"
-                value={settings.email}
-                onChange={(e) => handleChange('email', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                placeholder="info@solenza.com"
-              />
-            </div>
-          </div>
-        </div>
+      <form onSubmit={handleSubmit}>
+        <Tab.Group>
+          <div className="grid grid-cols-12 gap-8">
+            {/* Sidebar Navigation */}
+            <div className="col-span-12 lg:col-span-3">
+              <Tab.List className="flex flex-col space-y-2 bg-white rounded-2xl p-2 shadow-sm border border-gray-100">
+                {tabs.map((tab) => (
+                  <Tab
+                    key={tab.name}
+                    className={({ selected }: { selected: boolean }) =>
+                      classNames(
+                        'w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 outline-none',
+                        selected
+                          ? 'bg-indigo-50 text-indigo-700 shadow-sm'
+                          : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                      )
+                    }
+                  >
+                    <tab.icon className="w-5 h-5" />
+                    {tab.name}
+                  </Tab>
+                ))}
+              </Tab.List>
 
-        {/* İletişim Bilgileri */}
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-semibold text-dark mb-6">İletişim Bilgileri</h2>
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Telefon</label>
-              <input
-                type="text"
-                value={settings.phone}
-                onChange={(e) => handleChange('phone', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                placeholder="+90 XXX XXX XX XX"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">WhatsApp</label>
-              <input
-                type="text"
-                value={settings.whatsapp}
-                onChange={(e) => handleChange('whatsapp', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                placeholder="+90 XXX XXX XX XX"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Adres */}
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-semibold text-dark mb-6">Adres</h2>
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Adres (TR) 🇹🇷</label>
-              <textarea
-                value={settings.address_tr}
-                onChange={(e) => handleChange('address_tr', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                rows={3}
-                placeholder="İstanbul, Türkiye..."
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Address (EN) 🇬🇧</label>
-              <textarea
-                value={settings.address_en}
-                onChange={(e) => handleChange('address_en', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                rows={3}
-                placeholder="Istanbul, Turkey..."
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Hakkımızda */}
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-semibold text-dark mb-6">Hakkımızda</h2>
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Hakkımızda (TR) 🇹🇷</label>
-              <textarea
-                value={settings.about_tr}
-                onChange={(e) => handleChange('about_tr', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                rows={5}
-                placeholder="Solenza hakkında bilgi..."
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">About Us (EN) 🇬🇧</label>
-              <textarea
-                value={settings.about_en}
-                onChange={(e) => handleChange('about_en', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                rows={5}
-                placeholder="About Solenza..."
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Anasayfa Görselleri */}
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-semibold text-dark mb-6">Anasayfa Görselleri</h2>
-
-          {/* Hero Section */}
-          <div className="mb-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
-            <h3 className="font-bold text-gray-800 mb-4 border-b border-gray-200 pb-2">Hero Alanı (Üst Banner)</h3>
-            <div className="grid grid-cols-2 gap-6 mb-4">
-              <div>
-                <label className="block text-sm font-semibold text-dark mb-2">Başlık (TR)</label>
-                <input
-                  type="text"
-                  value={(settings as any).hero_title_tr || ''}
-                  onChange={(e) => handleChange('hero_title_tr', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="The Art of Living"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-dark mb-2">Alt Başlık (TR)</label>
-                <textarea
-                  value={(settings as any).hero_subtitle_tr || ''}
-                  onChange={(e) => handleChange('hero_subtitle_tr', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  rows={2}
-                  placeholder="Eviniz için seçkin parçalar..."
-                />
+              <div className="mt-6">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-indigo-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loading ? (
+                    'Kaydediliyor...'
+                  ) : (
+                    <>
+                      <span>💾 Değişiklikleri Kaydet</span>
+                    </>
+                  )}
+                </button>
               </div>
             </div>
-            <ImageUploader
-              label="Hero Görseli (Sağ Taraf)"
-              currentImage={(settings as any).hero_image_url}
-              onUpload={(url) => handleChange('hero_image_url', url)}
-              folderName="hero"
-            />
-          </div>
 
-          {/* Statement Section */}
-          <div className="p-6 bg-gray-50 rounded-xl border border-gray-200">
-            <h3 className="font-bold text-gray-800 mb-4 border-b border-gray-200 pb-2">Statement (Vurgulu) Alan</h3>
-            <div className="grid grid-cols-2 gap-6 mb-4">
-              <div>
-                <label className="block text-sm font-semibold text-dark mb-2">Koleksiyon Başlığı</label>
-                <input
-                  type="text"
-                  value={(settings as any).statement_title_tr || ''}
-                  onChange={(e) => handleChange('statement_title_tr', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  placeholder="The Velvet Touch Series"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-dark mb-2">Açıklama</label>
-                <textarea
-                  value={(settings as any).statement_desc_tr || ''}
-                  onChange={(e) => handleChange('statement_desc_tr', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                  rows={2}
-                  placeholder="Ustalıkla işlenmiş..."
-                />
-              </div>
-            </div>
-            <ImageUploader
-              label="Statement Görseli (Sol Taraf)"
-              currentImage={(settings as any).statement_image_url}
-              onUpload={(url) => handleChange('statement_image_url', url)}
-              folderName="statement"
-            />
-          </div>
-        </div>
+            {/* Content Area */}
+            <div className="col-span-12 lg:col-span-9">
+              <Tab.Panels>
+                {/* Genel Bilgiler */}
+                <Tab.Panel className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 space-y-6 outline-none animate-fadeIn">
+                  <div className="border-b border-gray-100 pb-4">
+                    <h2 className="text-xl font-bold text-gray-900">Şirket Bilgileri</h2>
+                    <p className="text-gray-500 text-sm">Temel mağaza kimlik bilgileri</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Mağaza Adı</label>
+                      <input
+                        type="text"
+                        value={settings.company_name}
+                        onChange={(e) => handleChange('company_name', e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                        placeholder="Solenza"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Kurumsal E-posta</label>
+                      <input
+                        type="email"
+                        value={settings.email}
+                        onChange={(e) => handleChange('email', e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                        placeholder="info@solenza.com"
+                      />
+                    </div>
+                  </div>
+                </Tab.Panel>
 
-        {/* Sosyal Medya */}
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-xl font-semibold text-dark mb-6">Sosyal Medya</h2>
-          <div className="grid grid-cols-3 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Facebook URL</label>
-              <input
-                type="url"
-                value={settings.facebook}
-                onChange={(e) => handleChange('facebook', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                placeholder="https://facebook.com/solenza"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Instagram URL</label>
-              <input
-                type="url"
-                value={settings.instagram}
-                onChange={(e) => handleChange('instagram', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                placeholder="https://instagram.com/solenza"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-dark mb-2">Twitter URL</label>
-              <input
-                type="url"
-                value={settings.twitter}
-                onChange={(e) => handleChange('twitter', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                placeholder="https://twitter.com/solenza"
-              />
+                {/* İletişim & Adres */}
+                <Tab.Panel className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 space-y-8 outline-none animate-fadeIn">
+                  <div className="space-y-6">
+                    <div className="border-b border-gray-100 pb-4">
+                      <h2 className="text-xl font-bold text-gray-900">İletişim Kanalı</h2>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Telefon</label>
+                        <div className="relative">
+                          <PhoneIcon className="w-5 h-5 absolute left-3 top-3.5 text-gray-400" />
+                          <input
+                            type="text"
+                            value={settings.phone}
+                            onChange={(e) => handleChange('phone', e.target.value)}
+                            className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">WhatsApp Hattı</label>
+                        <input
+                          type="text"
+                          value={settings.whatsapp}
+                          onChange={(e) => handleChange('whatsapp', e.target.value)}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="border-b border-gray-100 pb-4">
+                      <h2 className="text-xl font-bold text-gray-900">Adres Detayları</h2>
+                    </div>
+                    <div className="grid grid-cols-1 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">🇹🇷 Türkçe Açık Adres</label>
+                        <textarea
+                          value={settings.address_tr}
+                          onChange={(e) => handleChange('address_tr', e.target.value)}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                          rows={3}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">🇬🇧 English Address</label>
+                        <textarea
+                          value={settings.address_en}
+                          onChange={(e) => handleChange('address_en', e.target.value)}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                          rows={3}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </Tab.Panel>
+
+                {/* Hakkımızda */}
+                <Tab.Panel className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 space-y-6 outline-none animate-fadeIn">
+                  <div className="border-b border-gray-100 pb-4">
+                    <h2 className="text-xl font-bold text-gray-900">Hakkımızda Metinleri</h2>
+                    <p className="text-gray-500 text-sm">Web sitesinin "Hakkımızda" bölümünde görünecek içerik</p>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">🇹🇷 Türkçe Metin</label>
+                      <textarea
+                        value={settings.about_tr}
+                        onChange={(e) => handleChange('about_tr', e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all h-48"
+                        placeholder="Hikayemiz..."
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">🇬🇧 English Text</label>
+                      <textarea
+                        value={settings.about_en}
+                        onChange={(e) => handleChange('about_en', e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all h-48"
+                        placeholder="Our story..."
+                      />
+                    </div>
+                  </div>
+                </Tab.Panel>
+
+                {/* Görseller */}
+                <Tab.Panel className="space-y-6 outline-none animate-fadeIn">
+                  {/* Hero */}
+                  <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <div className="border-b border-gray-100 pb-4 mb-6">
+                      <h2 className="text-xl font-bold text-gray-900">Hero (Ana Banner)</h2>
+                      <p className="text-gray-500 text-sm">Ana sayfanızın en üstündeki büyük karşılama alanı</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Ana Başlık</label>
+                          <input
+                            type="text"
+                            value={settings.hero_title_tr}
+                            onChange={(e) => handleChange('hero_title_tr', e.target.value)}
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Alt Başlık</label>
+                          <textarea
+                            value={settings.hero_subtitle_tr}
+                            onChange={(e) => handleChange('hero_subtitle_tr', e.target.value)}
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                            rows={3}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <ImageUploader
+                          label="Hero Görseli (Sağ)"
+                          currentImage={settings.hero_image_url}
+                          onUpload={(url) => handleChange('hero_image_url', url)}
+                          folderName="hero"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Statement */}
+                  <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <div className="border-b border-gray-100 pb-4 mb-6">
+                      <h2 className="text-xl font-bold text-gray-900">Statement (Vurgu) Alanı</h2>
+                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Vurgu Başlığı</label>
+                          <input
+                            type="text"
+                            value={settings.statement_title_tr}
+                            onChange={(e) => handleChange('statement_title_tr', e.target.value)}
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-semibold text-gray-700 mb-2">Vurgu Açıklaması</label>
+                          <textarea
+                            value={settings.statement_desc_tr}
+                            onChange={(e) => handleChange('statement_desc_tr', e.target.value)}
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                            rows={3}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <ImageUploader
+                          label="Vurgu Görseli (Sol)"
+                          currentImage={settings.statement_image_url}
+                          onUpload={(url) => handleChange('statement_image_url', url)}
+                          folderName="statement"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </Tab.Panel>
+
+                {/* Sosyal Medya */}
+                <Tab.Panel className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 space-y-6 outline-none animate-fadeIn">
+                  <div className="border-b border-gray-100 pb-4">
+                    <h2 className="text-xl font-bold text-gray-900">Sosyal Medya Bağlantıları</h2>
+                  </div>
+                  <div className="space-y-4">
+                    {['facebook', 'instagram', 'twitter'].map((platform) => (
+                      <div key={platform}>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 capitalize">{platform}</label>
+                        <div className="relative">
+                          <span className="absolute left-4 top-3.5 text-gray-400">https://</span>
+                          <input
+                            type="url"
+                            value={(settings as any)[platform]}
+                            onChange={(e) => handleChange(platform, e.target.value)}
+                            className="w-full pl-20 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                            placeholder={`${platform}.com/solenza`}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Tab.Panel>
+              </Tab.Panels>
             </div>
           </div>
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {loading ? '⏳ Kaydediliyor...' : '💾 Ayarları Kaydet'}
-        </button>
+        </Tab.Group>
       </form>
     </div>
   )

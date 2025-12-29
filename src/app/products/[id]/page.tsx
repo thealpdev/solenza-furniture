@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Product } from '@/types'
+import RelatedProducts from '@/components/RelatedProducts'
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const { language } = useLanguage()
@@ -79,46 +80,72 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
 
-          {/* LEFT: Compact Gallery */}
-          <div className="space-y-4">
-            {/* Main Image */}
-            <div className="w-full aspect-[4/5] relative bg-gray-50 rounded-lg overflow-hidden border border-gray-100">
-              {hasImages ? (
-                <Image
-                  src={images[selectedImage].image_url}
-                  alt={(product as any).title_tr}
-                  fill
-                  className="object-cover mix-blend-multiply"
-                  sizes="(max-width: 1024px) 100vw, 500px"
-                  priority
-                />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-gray-300">
-                  <span className="text-xs uppercase tracking-widest">Görsel Yok</span>
+          {/* LEFT: Premium Gallery (Vertical Stack) */}
+          <div className="space-y-4 md:space-y-8">
+            {hasImages ? (
+              <>
+                {/* Desktop: Vertical Stack */}
+                <div className="hidden md:flex flex-col gap-6">
+                  {images.map((img: any, idx: number) => (
+                    <div key={img.id} className="w-full relative bg-gray-50 rounded-lg overflow-hidden border border-gray-100 aspect-[4/5]">
+                      <Image
+                        src={img.image_url}
+                        alt={`${(product as any).title_tr} - ${idx + 1}`}
+                        fill
+                        className="object-cover transition-transform duration-700 hover:scale-105 cursor-zoom-in"
+                        sizes="(max-width: 1024px) 100vw, 800px"
+                        priority={idx === 0}
+                      />
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
 
-            {/* Thumbnails */}
-            {hasImages && images.length > 1 && (
-              <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-                {images.map((img: any, idx: number) => (
-                  <button
-                    key={img.id}
-                    onClick={() => setSelectedImage(idx)}
-                    className={`relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden border transition-all ${selectedImage === idx
-                      ? 'border-gray-900 opacity-100'
-                      : 'border-transparent opacity-60 hover:opacity-100'
-                      }`}
-                  >
-                    <Image
-                      src={img.image_url}
-                      alt={`View ${idx + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </button>
-                ))}
+                {/* Mobile: Swipe Slider (Simple Implementation) */}
+                <div className="md:hidden w-full aspect-[4/5] relative bg-gray-50 rounded-lg overflow-hidden border border-gray-100">
+                  <Image
+                    src={images[selectedImage].image_url}
+                    alt={(product as any).title_tr}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  {/* Dots for Mobile */}
+                  {images.length > 1 && (
+                    <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
+                      {images.map((_: any, idx: number) => (
+                        <button
+                          key={idx}
+                          onClick={() => setSelectedImage(idx)}
+                          className={`w-2 h-2 rounded-full transition-all box-content border border-white/20 ${selectedImage === idx ? 'bg-white scale-125' : 'bg-white/40'}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+                {/* Mobile Thumbnails Row */}
+                <div className="flex md:hidden gap-3 overflow-x-auto pb-2 no-scrollbar">
+                  {images.map((img: any, idx: number) => (
+                    <button
+                      key={img.id}
+                      onClick={() => setSelectedImage(idx)}
+                      className={`relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden border transition-all ${selectedImage === idx
+                        ? 'border-gray-900 opacity-100'
+                        : 'border-transparent opacity-60 hover:opacity-100'
+                        }`}
+                    >
+                      <Image
+                        src={img.image_url}
+                        alt={`View ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="w-full aspect-[4/5] relative bg-gray-50 rounded-lg overflow-hidden border border-gray-100 flex items-center justify-center text-gray-300">
+                <span className="text-xs uppercase tracking-widest">Görsel Yok</span>
               </div>
             )}
           </div>
@@ -177,8 +204,8 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               <button
                 onClick={() => product && toggleFavorite(product.id)}
                 className={`w-full border h-12 rounded-md flex items-center justify-center gap-2 uppercase tracking-widest text-[11px] font-medium transition-all duration-300 ${product && isFavorite(product.id)
-                    ? 'bg-holiday-red border-holiday-red text-white hover:bg-red-700'
-                    : 'border-gray-200 text-gray-900 hover:bg-gray-50'
+                  ? 'bg-holiday-red border-holiday-red text-white hover:bg-red-700'
+                  : 'border-gray-200 text-gray-900 hover:bg-gray-50'
                   }`}
               >
                 <svg className={`w-5 h-5 ${product && isFavorite(product.id) ? 'fill-current' : 'fill-none'}`} stroke="currentColor" viewBox="0 0 24 24">
@@ -213,6 +240,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
+
+      {/* Related Products Section */}
+      {product && (product as any).category_id && (
+        <RelatedProducts
+          categoryId={(product as any).category_id}
+          currentProductId={(product as any).id}
+        />
+      )}
     </div>
   )
 }

@@ -280,7 +280,7 @@ export default function Header({
                 </Link>
               </div>
               <div className="flex gap-4">
-                <a href="#" className="text-white/40 hover:text-white cursor-pointer transition-colors text-xs uppercase tracking-widest">Instagram</a>
+                <a href="https://www.instagram.com/solenzamobilya/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white cursor-pointer transition-colors text-xs uppercase tracking-widest">Instagram</a>
                 <a href="#" className="text-white/40 hover:text-white cursor-pointer transition-colors text-xs uppercase tracking-widest">Pinterest</a>
               </div>
             </div>

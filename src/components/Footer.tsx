@@ -36,7 +36,7 @@ export default function Footer() {
       address_tr: 'Önder, Kartalcık Sk. No : 91, 06160 Altındağ/Ankara',
       address_en: 'Önder, Kartalcık Sk. No : 91, 06160 Altındağ/Ankara',
       facebook: '',
-      instagram: '',
+      instagram: 'https://www.instagram.com/solenzamobilya/',
     })
   }
 

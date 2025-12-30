@@ -9,7 +9,7 @@ import { CATEGORIES, CATEGORY_IMAGES } from "@/lib/constants";
 
 import LanguageSwitcher from './LanguageSwitcher';
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface HeaderProps {
   activeCategory?: string;
@@ -28,6 +28,7 @@ export default function Header({
 }: HeaderProps) {
   const { language, setLanguage } = useLanguage();
   const pathname = usePathname();
+  const router = useRouter();
   const { favorites } = useFavorites();
   const [categories, setCategories] = useState<any[]>(CATEGORIES);
   const [searchQuery, setSearchQuery] = useState("");
@@ -108,6 +109,8 @@ export default function Header({
   const handleSearch = () => {
     if (onSearch && searchQuery.trim()) {
       onSearch(searchQuery);
+    } else if (searchQuery.trim()) {
+      router.push(`/?search=${encodeURIComponent(searchQuery)}`);
     }
   };
 
@@ -121,8 +124,8 @@ export default function Header({
   return (
     <header
       className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled
-          ? "bg-[#020610]/95 backdrop-blur-md shadow-lg py-4 border-b border-white/5"
-          : "bg-transparent py-6"
+        ? "bg-[#020610]/95 backdrop-blur-md shadow-lg py-4 border-b border-white/5"
+        : "bg-transparent py-6"
         }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
@@ -243,9 +246,10 @@ export default function Header({
           <div className="flex-1 overflow-y-auto px-10 py-8 no-scrollbar">
             <div className="space-y-2">
               {categories.map((cat, idx) => (
-                <button
+                <Link
                   key={cat.slug}
-                  onClick={() => handleCategoryClick(cat.slug)}
+                  href={`/?category=${cat.id}`} // Using ID instead of slug to match page.tsx logic simpler, or I need to lookup slug in page.tsx. Page uses ID. Let's use ID if available. Wait, categories in Header have slug and likely ID.
+                  onClick={() => setMobileMenuOpen(false)}
                   onMouseEnter={() => setHoveredCategory(cat.slug)}
                   onMouseLeave={() => setHoveredCategory(null)}
                   className="block text-3xl md:text-5xl font-serif font-light text-white hover:text-holiday-gold hover:pl-8 transition-all duration-500 text-left w-full group animate-fade-in-up"
@@ -257,7 +261,7 @@ export default function Header({
                       ✦
                     </span>
                   </span>
-                </button>
+                </Link>
               ))}
             </div>
           </div>

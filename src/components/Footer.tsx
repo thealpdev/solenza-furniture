@@ -3,15 +3,28 @@
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { supabase } from '@/lib/supabase'
 import type { Settings } from '@/types'
 
 export default function Footer() {
   const { language } = useLanguage()
   const [settings, setSettings] = useState<Settings>({})
+  const [categories, setCategories] = useState<any[]>([])
 
   useEffect(() => {
     loadSettings()
+    loadCategories()
   }, [])
+
+  const loadCategories = async () => {
+    const { data } = await supabase
+      .from('categories')
+      .select('*')
+      .order('created_at', { ascending: true })
+      .limit(5)
+
+    if (data) setCategories(data)
+  }
 
   const loadSettings = async () => {
     setSettings({
@@ -32,13 +45,6 @@ export default function Footer() {
     { name: language === 'tr' ? 'İletişim' : 'Contact', href: '/contact' },
     { name: language === 'tr' ? 'Gizlilik' : 'Privacy', href: '/privacy' },
     { name: 'Admin', href: '/admin/login' },
-  ]
-
-  const categories = [
-    { name: language === 'tr' ? 'Mutfak' : 'Kitchen', href: '/categories/mutfak' },
-    { name: language === 'tr' ? 'Banyo' : 'Bathroom', href: '/categories/banyo' },
-    { name: language === 'tr' ? 'Yatak Odası' : 'Bedroom', href: '/categories/yatak-odasi' },
-    { name: language === 'tr' ? 'Aydınlatma' : 'Lighting', href: '/categories/aydinlatma' },
   ]
 
   return (
@@ -87,9 +93,9 @@ export default function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-widest text-white mb-6">{language === 'tr' ? 'Koleksiyonlar' : 'Collections'}</h4>
             <ul className="space-y-3 text-sm">
               {categories.map(cat => (
-                <li key={cat.href}>
-                  <Link href={cat.href} className="hover:text-white transition-colors">
-                    {cat.name}
+                <li key={cat.id}>
+                  <Link href={`/?category=${cat.id}`} className="hover:text-white transition-colors">
+                    {language === 'tr' ? cat.name_tr : (cat.name_en || cat.name_tr)}
                   </Link>
                 </li>
               ))}

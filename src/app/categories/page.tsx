@@ -70,7 +70,7 @@ export default function CategoriesPage() {
         {categories.map((category, idx) => (
           <Link
             key={category.id}
-            href={`/categories/${category.slug}`}
+            href={`/?category=${category.id}`}
             className="group relative h-[50vh] md:h-[60vh] overflow-hidden bg-gray-200"
           >
             {/* Image */}

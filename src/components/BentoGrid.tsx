@@ -47,7 +47,7 @@ export default function BentoGrid() {
                         {categories.map((cat) => (
                             <Link
                                 key={cat.id}
-                                href={`/categories/${cat.slug}`}
+                                href={`/?category=${cat.id}`}
                                 className="group relative block flex-shrink-0 w-[85vw] md:w-[350px] overflow-hidden bg-gray-100 aspect-[3/4] snap-center"
                             >
                                 {/* Image Container - Clean & Chic */}

@@ -204,7 +204,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               <button
                 onClick={() => product && toggleFavorite(product.id)}
                 className={`w-full border h-12 rounded-md flex items-center justify-center gap-2 uppercase tracking-widest text-[11px] font-medium transition-all duration-300 ${product && isFavorite(product.id)
-                  ? 'bg-holiday-red border-holiday-red text-white hover:bg-red-700'
+                  ? 'bg-primary border-primary text-white hover:bg-primary-dark'
                   : 'border-gray-200 text-gray-900 hover:bg-gray-50'
                   }`}
               >

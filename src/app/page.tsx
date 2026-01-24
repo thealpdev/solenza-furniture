@@ -321,9 +321,9 @@ function HomeContent() {
               <div className="hidden md:flex items-center gap-8">
                 {/* Category Dropdown */}
                 <div className="relative group">
-                  <button className={`flex items-center gap-2 text-sm uppercase tracking-widest font-medium transition-colors ${selectedCategories.length > 0 ? 'text-black' : 'text-gray-900 hover:text-holiday-red'}`}>
-                    Kategori {selectedCategories.length > 0 && <span className="ml-1 flex h-4 w-4 items-center justify-center rounded-full bg-holiday-red text-[9px] text-white">{selectedCategories.length}</span>}
-                    <svg className={`w-3 h-3 ${selectedCategories.length > 0 ? 'text-black' : 'text-gray-400 group-hover:text-holiday-red'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
+                  <button className={`flex items-center gap-2 text-sm uppercase tracking-widest font-medium transition-colors ${selectedCategories.length > 0 ? 'text-black' : 'text-gray-900 hover:text-primary'}`}>
+                    Kategori {selectedCategories.length > 0 && <span className="ml-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[9px] text-white">{selectedCategories.length}</span>}
+                    <svg className={`w-3 h-3 ${selectedCategories.length > 0 ? 'text-black' : 'text-gray-400 group-hover:text-primary'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
                   </button>
                   <div className="absolute top-full left-0 mt-4 w-64 bg-white shadow-xl border border-gray-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                     <div className="flex flex-col gap-2 max-h-[300px] overflow-y-auto custom-scrollbar">
@@ -342,9 +342,9 @@ function HomeContent() {
 
                 {/* Price Dropdown */}
                 <div className="relative group">
-                  <button className={`flex items-center gap-2 text-sm uppercase tracking-widest font-medium transition-colors ${priceRange[0] > 0 || priceRange[1] < 1000000 ? 'text-black' : 'text-gray-900 hover:text-holiday-red'}`}>
-                    Fiyat {(priceRange[0] > 0 || priceRange[1] < 1000000) && <span className="ml-1 w-2 h-2 bg-holiday-red rounded-full"></span>}
-                    <svg className={`w-3 h-3 ${priceRange[0] > 0 || priceRange[1] < 1000000 ? 'text-black' : 'text-gray-400 group-hover:text-holiday-red'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
+                  <button className={`flex items-center gap-2 text-sm uppercase tracking-widest font-medium transition-colors ${priceRange[0] > 0 || priceRange[1] < 1000000 ? 'text-black' : 'text-gray-900 hover:text-primary'}`}>
+                    Fiyat {(priceRange[0] > 0 || priceRange[1] < 1000000) && <span className="ml-1 w-2 h-2 bg-primary rounded-full"></span>}
+                    <svg className={`w-3 h-3 ${priceRange[0] > 0 || priceRange[1] < 1000000 ? 'text-black' : 'text-gray-400 group-hover:text-primary'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
                   </button>
                   <div className="absolute top-full left-0 mt-4 w-72 bg-white shadow-xl border border-gray-100 p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                     <div className="flex items-center justify-between text-xs text-gray-500 mb-4 font-sans">
@@ -369,9 +369,9 @@ function HomeContent() {
 
                 {/* Availability Dropdown */}
                 <div className="relative group">
-                  <button className={`flex items-center gap-2 text-sm uppercase tracking-widest font-medium transition-colors ${inStock || preOrder ? 'text-black' : 'text-gray-900 hover:text-holiday-red'}`}>
-                    Durum {(inStock || preOrder) && <span className="ml-1 w-2 h-2 bg-holiday-red rounded-full"></span>}
-                    <svg className={`w-3 h-3 ${inStock || preOrder ? 'text-black' : 'text-gray-400 group-hover:text-holiday-red'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
+                  <button className={`flex items-center gap-2 text-sm uppercase tracking-widest font-medium transition-colors ${inStock || preOrder ? 'text-black' : 'text-gray-900 hover:text-primary'}`}>
+                    Durum {(inStock || preOrder) && <span className="ml-1 w-2 h-2 bg-primary rounded-full"></span>}
+                    <svg className={`w-3 h-3 ${inStock || preOrder ? 'text-black' : 'text-gray-400 group-hover:text-primary'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" /></svg>
                   </button>
                   <div className="absolute top-full left-0 mt-4 w-48 bg-white shadow-xl border border-gray-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                     <label className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 transition-colors mb-1">
@@ -514,14 +514,14 @@ function HomeContent() {
             </>
           ) : (
             <div className="text-center py-20">
-              <div className="text-6xl mb-4 animate-bounce">🎄</div>
+              <div className="text-6xl mb-4 animate-pulse">✨</div>
               <p className="text-gray-600 text-lg font-medium mb-2">Filtrelere uygun ürün bulunamadı</p>
               <p className="text-gray-500 text-sm mb-6">Filtreleri değiştirerek tekrar deneyin</p>
               <button
                 onClick={clearFilters}
-                className="px-6 py-3 bg-gradient-to-r from-holiday-red to-red-700 text-white rounded-xl hover:from-red-600 hover:to-red-800 transition-all shadow-lg hover:shadow-xl font-semibold transform hover:scale-105"
+                className="px-6 py-3 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl hover:from-primary-dark hover:to-primary-dark transition-all shadow-lg hover:shadow-xl font-semibold transform hover:scale-105"
               >
-                ✨ Filtreleri Temizle
+                Filtreleri Temizle
               </button>
             </div>
           )}

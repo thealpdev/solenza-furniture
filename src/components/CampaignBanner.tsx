@@ -102,8 +102,8 @@ export default function CampaignBanner() {
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-sm mx-auto md:mx-0">
                         <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-holiday-red opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-holiday-red"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                         </span>
                         <span className="text-xs font-bold uppercase tracking-widest text-white/90">
                             {language === 'tr' ? 'Özel Fırsat' : 'Special Offer'}

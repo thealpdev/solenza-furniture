@@ -25,11 +25,11 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-holiday-red hover:bg-red-800 text-white px-8 py-3 rounded-none font-medium transition-all duration-500 shadow-lg hover:shadow-red-900/20 uppercase tracking-widest text-xs;
+    @apply bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-none font-medium transition-all duration-500 shadow-lg hover:shadow-primary-dark/20 uppercase tracking-widest text-xs;
   }
 
   .btn-outline {
-    @apply border border-holiday-red text-holiday-red hover:bg-holiday-red hover:text-white px-8 py-3 rounded-none font-medium transition-all duration-500 uppercase tracking-widest text-xs;
+    @apply border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-none font-medium transition-all duration-500 uppercase tracking-widest text-xs;
   }
 
   .card {

@@ -135,12 +135,12 @@ export default function Header({
           <div className="flex items-center gap-6">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className={`group flex items-center gap-3 transition-colors ${headerTextColor} hover:text-holiday-red`}
+              className={`group flex items-center gap-3 transition-colors ${headerTextColor} hover:text-primary`}
             >
               <div className="relative w-8 h-8 flex flex-col justify-center gap-1.5">
-                <span className="block w-8 h-0.5 bg-current transition-all group-hover:w-full group-hover:bg-holiday-red"></span>
-                <span className="block w-5 h-0.5 bg-current transition-all group-hover:w-full group-hover:bg-holiday-red"></span>
-                <span className="block w-8 h-0.5 bg-current transition-all group-hover:w-full group-hover:bg-holiday-red"></span>
+                <span className="block w-8 h-0.5 bg-current transition-all group-hover:w-full group-hover:bg-primary"></span>
+                <span className="block w-5 h-0.5 bg-current transition-all group-hover:w-full group-hover:bg-primary"></span>
+                <span className="block w-8 h-0.5 bg-current transition-all group-hover:w-full group-hover:bg-primary"></span>
               </div>
               <span className="hidden md:block font-serif italic text-lg tracking-wide group-hover:translate-x-1 transition-transform">
                 {lang === 'tr' ? 'Keşfet' : 'Explore'}
@@ -164,10 +164,10 @@ export default function Header({
 
           {/* CENTER: Logo */}
           <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group text-center">
-            <h1 className={`font-serif text-3xl md:text-5xl font-bold tracking-tighter transition-colors duration-500 group-hover:text-holiday-red ${headerTextColor}`}>
+            <h1 className={`font-serif text-3xl md:text-5xl font-bold tracking-tighter transition-colors duration-500 group-hover:text-primary ${headerTextColor}`}>
               SOLENZA
             </h1>
-            <span className={`hidden md:block text-[10px] uppercase tracking-[0.3em] mt-1 transition-colors group-hover:text-holiday-gold ${scrolled ? 'text-gray-400' : (isLightPage ? 'text-gray-500' : 'text-white/60')}`}>
+            <span className={`hidden md:block text-[10px] uppercase tracking-[0.3em] mt-1 transition-colors group-hover:text-gold-400 ${scrolled ? 'text-gray-400' : (isLightPage ? 'text-gray-500' : 'text-white/60')}`}>
               Luxury Furniture
             </span>
           </Link>
@@ -187,13 +187,13 @@ export default function Header({
             {/* Favorites Icon */}
             <Link href="/favorites" className="relative group p-1">
               {favorites.length > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-holiday-red rounded-full animate-ping"></span>
+                <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-primary rounded-full animate-ping"></span>
               )}
               {favorites.length > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-holiday-red rounded-full border border-[#020610]"></span>
+                <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-primary rounded-full border border-[#020610]"></span>
               )}
               <svg
-                className={`w-6 h-6 transition-all duration-300 group-hover:text-holiday-red group-hover:scale-110 ${headerTextColor}`}
+                className={`w-6 h-6 transition-all duration-300 group-hover:text-primary group-hover:scale-110 ${headerTextColor}`}
                 fill={favorites.length > 0 ? "currentColor" : "none"}
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -252,12 +252,12 @@ export default function Header({
                   onClick={() => setMobileMenuOpen(false)}
                   onMouseEnter={() => setHoveredCategory(cat.slug)}
                   onMouseLeave={() => setHoveredCategory(null)}
-                  className="block text-3xl md:text-5xl font-serif font-light text-white hover:text-holiday-gold hover:pl-8 transition-all duration-500 text-left w-full group animate-fade-in-up"
+                  className="block text-3xl md:text-5xl font-serif font-light text-white hover:text-gold-400 hover:pl-8 transition-all duration-500 text-left w-full group animate-fade-in-up"
                   style={{ animationDelay: `${200 + (idx * 50)}ms` }}
                 >
                   <span className="relative inline-block">
                     {cat.name_tr || cat.name || cat.slug}
-                    <span className="absolute -left-6 top-1/2 -translate-y-1/2 text-lg opacity-0 group-hover:opacity-100 transition-opacity text-holiday-gold">
+                    <span className="absolute -left-6 top-1/2 -translate-y-1/2 text-lg opacity-0 group-hover:opacity-100 transition-opacity text-gold-400">
                       ✦
                     </span>
                   </span>

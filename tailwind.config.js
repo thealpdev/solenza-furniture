@@ -6,17 +6,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#b40019',
-        'primary-dark': '#8b0013',
-        'primary-light': '#e6001f',
-        secondary: '#f7f7f7',
-        dark: '#1a1a1a',
-        'gray-light': '#f7f7f7',
-        holiday: {
-          red: '#6D071A', // Deep Burgundy
-          green: '#1A3C34', // Deep Forest Green
-          gold: '#D4AF37', // Champagne Gold
-          cream: '#FDFBF7', // Rich Cream
+        primary: '#C5A059', // Premium Gold
+        'primary-dark': '#B8860B', // Dark Goldenrod
+        'primary-light': '#E5C17C', // Soft Gold
+        secondary: '#FDFBF7', // Rich Cream
+        dark: '#121212', // Softer Black
+        'gray-light': '#F9F9F9',
+        gold: {
+          100: '#F9F1D8',
+          200: '#E5C17C',
+          300: '#D4AF37',
+          400: '#C5A059',
+          500: '#B8860B',
+          600: '#8B6508',
         },
       },
       fontFamily: {

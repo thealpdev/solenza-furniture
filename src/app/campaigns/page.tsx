@@ -76,26 +76,26 @@ export default function CampaignsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
-      {/* Hero Banner - Holiday Style */}
-      <section className="relative bg-gradient-to-r from-holiday-red via-red-700 to-holiday-red overflow-hidden border-b border-holiday-gold/20">
+      {/* Hero Banner - Luxury Style */}
+      <section className="relative bg-gradient-to-r from-primary-dark via-primary to-primary-dark overflow-hidden border-b border-gold-400/20">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-holiday-gold rounded-full blur-3xl"></div>
-          <div className="absolute top-20 left-1/4 w-2 h-2 bg-holiday-green rounded-full animate-ping"></div>
-          <div className="absolute bottom-20 right-1/4 w-3 h-3 bg-holiday-green rounded-full animate-ping delay-700"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-400 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-1/4 w-2 h-2 bg-gold-200 rounded-full animate-ping"></div>
+          <div className="absolute bottom-20 right-1/4 w-3 h-3 bg-gold-200 rounded-full animate-ping delay-700"></div>
         </div>
 
         <div className="max-w-6xl mx-auto px-4 py-16 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-6 shadow-lg">
-            <span className="text-2xl animate-bounce">🎁</span>
+            <span className="text-2xl animate-pulse">🎁</span>
             <span className="text-white font-bold tracking-wide">
               {language === 'tr' ? 'Fırsatlar' : 'Opportunities'}
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 drop-shadow-md">
-            {language === 'tr' ? 'Kaçırılmayacak' : 'Unmissable'} <span className="text-holiday-gold">{language === 'tr' ? 'Kampanyalar' : 'Campaigns'}</span>
+            {language === 'tr' ? 'Kaçırılmayacak' : 'Unmissable'} <span className="text-gold-100">{language === 'tr' ? 'Kampanyalar' : 'Campaigns'}</span>
           </h1>
-          <p className="text-lg md:text-xl text-red-50 max-w-2xl mx-auto font-light">
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-light">
             {language === 'tr'
               ? 'Evinizi yenilerken bütçenizi koruyan özel indirimler ve hediye fırsatları'
               : 'Special discounts and gift opportunities that protect your budget while renewing your home'}
@@ -144,7 +144,7 @@ export default function CampaignsPage() {
 
                     {/* İndirim Badge (Varsa) */}
                     {campaign.discount_amount && (
-                      <div className="absolute bottom-4 right-4 bg-holiday-red text-white px-4 py-2 rounded-xl font-bold text-xl shadow-lg border border-white/20">
+                      <div className="absolute bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-xl font-bold text-xl shadow-lg border border-white/20">
                         {campaign.discount_amount}
                       </div>
                     )}
@@ -171,7 +171,7 @@ export default function CampaignsPage() {
                       )}
                       <Link
                         href={`/campaigns/${campaign.id}`}
-                        className="group/btn relative overflow-hidden bg-gray-900 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-holiday-red transition-colors flex items-center gap-2 ml-auto"
+                        className="group/btn relative overflow-hidden bg-gray-900 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-primary transition-colors flex items-center gap-2 ml-auto"
                       >
                         <span>{language === 'tr' ? 'İncele' : 'View Details'}</span>
                         <svg className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,7 +192,7 @@ export default function CampaignsPage() {
         <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden border border-gray-800">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 right-0 w-64 h-64 bg-holiday-red rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-holiday-green rounded-full blur-3xl opacity-40"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-dark rounded-full blur-3xl opacity-40"></div>
           </div>
 
           <div className="relative z-10">
@@ -209,7 +209,7 @@ export default function CampaignsPage() {
                 href="/contact"
                 className="bg-white text-gray-900 px-8 py-3 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg inline-flex items-center justify-center gap-2"
               >
-                <svg className="w-5 h-5 text-holiday-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 {language === 'tr' ? 'İletişime Geç' : 'Contact Us'}

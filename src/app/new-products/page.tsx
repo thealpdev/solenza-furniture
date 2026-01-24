@@ -67,30 +67,30 @@ export default function NewProductsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Banner */}
-      {/* Hero Banner - Holiday Theme */}
-      <section className="relative bg-gradient-to-r from-holiday-red via-red-600 to-holiday-red overflow-hidden border-b border-holiday-gold/20">
+      {/* Hero Banner - Golden Luxury Theme */}
+      <section className="relative bg-gradient-to-r from-primary-dark via-primary to-primary-dark overflow-hidden border-b border-gold-400/20">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-holiday-gold rounded-full blur-3xl"></div>
-          {/* Subtle Green Accent */}
-          <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-holiday-green rounded-full blur-3xl opacity-30"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-400 rounded-full blur-3xl"></div>
+          {/* Subtle Accent */}
+          <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-primary-light rounded-full blur-3xl opacity-30"></div>
         </div>
 
         <div className="max-w-6xl mx-auto px-4 py-16 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-6 shadow-lg">
-            <span className="text-2xl animate-spin-slow">✨</span>
-            <span className="text-white font-bold tracking-wide">Yeni Yıl Koleksiyonu</span>
+            <span className="text-2xl animate-pulse">✨</span>
+            <span className="text-white font-bold tracking-wide">Yeni Sezon Koleksiyonu</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 drop-shadow-md">
-            En Yeni <span className="text-holiday-gold relative inline-block">
+            En Yeni <span className="text-gold-100 relative inline-block">
               Ürünlerimiz
-              <svg className="absolute -top-6 -right-6 w-8 h-8 text-holiday-green opacity-80 animate-bounce" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="absolute -top-6 -right-6 w-8 h-8 text-gold-300 opacity-80 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12,2L15,8L21,9L16.5,13.5L18,19L12,16L6,19L7.5,13.5L3,9L9,8L12,2Z" />
               </svg>
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-red-50 max-w-2xl mx-auto font-light">
-            Bu yılbaşında evinize ışıltı katacak yepyeni tasarımlar ve özel parçalar
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-light">
+            Evinize ışıltı katacak yepyeni tasarımlar ve özel parçalar
           </p>
         </div>
       </section>
@@ -111,7 +111,7 @@ export default function NewProductsPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 focus:border-holiday-gold focus:ring-2 focus:ring-holiday-gold/20 focus:outline-none transition-all"
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
               >
                 <option value="newest">En Yeni</option>
                 <option value="price-asc">Fiyat: Düşükten Yükseğe</option>
@@ -147,11 +147,11 @@ export default function NewProductsPage() {
               Henüz Yeni Ürün Yok
             </h3>
             <p className="text-gray-500 mb-8 max-w-md mx-auto">
-              Yılbaşı koleksiyonumuz çok yakında burada olacak. Takipte kalın!
+              Yeni sezon koleksiyonumuz çok yakında burada olacak. Takipte kalın!
             </p>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 bg-holiday-red text-white px-8 py-3 rounded-xl font-bold hover:bg-red-700 transition shadow-lg shadow-red-200"
+              className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-primary-dark transition shadow-lg shadow-primary/20"
             >
               <span>Ana Sayfaya Dön</span>
             </Link>
@@ -159,26 +159,26 @@ export default function NewProductsPage() {
         )}
       </section>
 
-      {/* CTA Bölümü - Holiday Style */}
+      {/* CTA Bölümü - Luxury Style */}
       <section className="max-w-6xl mx-auto px-4 py-12">
-        <div className="bg-gradient-to-br from-red-600 via-holiday-red to-red-800 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden shadow-2xl shadow-red-200">
+        <div className="bg-gradient-to-br from-primary-dark via-primary to-primary-dark rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden shadow-2xl shadow-primary/20">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-            {/* Green Accent */}
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-holiday-green rounded-full blur-3xl opacity-40"></div>
+            {/* Accent */}
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold-300 rounded-full blur-3xl opacity-40"></div>
           </div>
 
           <div className="relative z-10">
-            <span className="text-5xl mb-6 block animate-bounce">🔔</span>
+            <span className="text-5xl mb-6 block animate-pulse">🔔</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Yeni Ürünlerden İlk Siz Haberdar Olun
             </h2>
             <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-              Yılbaşına özel sınırlı sayıdaki koleksiyon parçalarını kaçırmamak için bildirimleri açın.
+              Yeni sezona özel sınırlı sayıdaki koleksiyon parçalarını kaçırmamak için bildirimleri açın.
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-white text-holiday-red px-8 py-4 rounded-xl font-bold hover:bg-red-50 transition-all shadow-lg transform hover:-translate-y-1"
+              className="inline-block bg-white text-primary-dark px-8 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all shadow-lg transform hover:-translate-y-1"
             >
               İletişime Geç
             </Link>

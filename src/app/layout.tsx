@@ -5,8 +5,6 @@ import { LanguageProvider } from '@/contexts/LanguageContext'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Toaster } from 'react-hot-toast'
-import SnowEffect from '@/components/SnowEffect'
-import LEDGlow from '@/components/LEDGlow'
 import { FavoritesProvider } from '@/contexts/FavoritesContext'
 import LayoutWrapper from './LayoutWrapper'
 
@@ -71,8 +69,6 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${lato.variable} ${playfair.variable}`}>
       <body className={lato.className}>
-        <LEDGlow />
-        <SnowEffect />
         <FavoritesProvider>
           <LanguageProvider>
             <LayoutWrapper>

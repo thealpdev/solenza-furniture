@@ -63,14 +63,14 @@ export default function ProductCard({ product, className = '', variant = 'defaul
             {/* Badges */}
             <div className="absolute top-3 left-3 flex flex-col gap-2">
               {isNew && <span className="bg-white/90 backdrop-blur px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-black">Yeni</span>}
-              {isSale && <span className="bg-holiday-red text-white px-2 py-1 text-[10px] font-bold uppercase tracking-widest">İndirim</span>}
+              {isSale && <span className="bg-primary text-white px-2 py-1 text-[10px] font-bold uppercase tracking-widest">İndirim</span>}
             </div>
 
             {/* Float Actions */}
             <div className={`absolute bottom-4 right-4 flex flex-col gap-2 transition-all duration-300 transform ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
               <button
                 onClick={(e) => { e.preventDefault(); setIsFavorite(!isFavorite); }}
-                className={`w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md transition-all ${isFavorite ? 'bg-holiday-red text-white' : 'bg-white/90 text-black hover:bg-black hover:text-white'}`}
+                className={`w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md transition-all ${isFavorite ? 'bg-primary text-white' : 'bg-white/90 text-black hover:bg-black hover:text-white'}`}
                 title="Favorilere Ekle"
               >
                 <svg className={`w-5 h-5 ${isFavorite ? 'fill-current' : 'fill-none'}`} stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
@@ -89,7 +89,7 @@ export default function ProductCard({ product, className = '', variant = 'defaul
 
       {/* Content Area - Minimalist Left Aligned */}
       <div className="flex flex-col items-start w-full px-1">
-        <h3 className="font-serif text-lg leading-tight text-gray-900 mb-1 group-hover:text-holiday-red transition-colors duration-300">
+        <h3 className="font-serif text-lg leading-tight text-gray-900 mb-1 group-hover:text-primary transition-colors duration-300">
           <Link href={`/products/${product.id}`}>
             {product.title_tr}
           </Link>
@@ -107,7 +107,7 @@ export default function ProductCard({ product, className = '', variant = 'defaul
 
           {/* Hidden "Add to Cart" or Arrow that appears on hover could go here, 
                but user removed cart. Maybe just a subtle arrow. */}
-          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-holiday-red">
+          <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-primary">
             →
           </span>
         </div>

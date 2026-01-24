@@ -34,9 +34,9 @@ export default function BentoGrid() {
             <div className="container mx-auto px-6 max-w-[1400px]">
                 {/* Section Header */}
                 <div className="mb-12 text-center max-w-2xl mx-auto">
-                    <span className="text-xs font-sans tracking-[0.25em] text-holiday-red uppercase mb-3 block font-bold">Koleksiyonlar</span>
+                    <span className="text-xs font-sans tracking-[0.25em] text-primary uppercase mb-3 block font-bold">Koleksiyonlar</span>
                     <h2 className="font-serif text-3xl md:text-4xl text-gray-900 mb-4 leading-tight">
-                        Yaşam Alanınızı <span className="italic font-light text-holiday-gold">Şekillendirin</span>
+                        Yaşam Alanınızı <span className="italic font-light text-gold-400">Şekillendirin</span>
                     </h2>
                     <div className="w-12 h-1 bg-gray-100 mx-auto rounded-full"></div>
                 </div>
@@ -63,7 +63,7 @@ export default function BentoGrid() {
 
                                 {/* Content - Floating at bottom */}
                                 <div className="absolute bottom-0 left-0 right-0 p-8 text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                                    <h3 className="text-white font-serif text-3xl mb-2 group-hover:text-holiday-gold transition-colors">
+                                    <h3 className="text-white font-serif text-3xl mb-2 group-hover:text-gold-400 transition-colors">
                                         {cat.name_tr}
                                     </h3>
                                     <div className="inline-block border-b border-white/30 pb-1 text-white text-xs uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">

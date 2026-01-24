@@ -98,9 +98,14 @@ export default function CampaignBanner() {
             {/* Content Container */}
             <div className="relative z-10 max-w-[1400px] mx-auto px-6 py-6 md:py-8 lg:py-10 flex flex-col md:flex-row items-center justify-between gap-6">
 
-                <div className="flex-1 text-center md:text-left space-y-3">
+                {/* Glass Card for Text Content */}
+                <div className="flex-1 text-center md:text-left space-y-4 max-w-2xl bg-black/30 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden group">
+
+                    {/* Shimmer Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
                     {/* Badge */}
-                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-sm mx-auto md:mx-0">
+                    <div className="inline-flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-sm mx-auto md:mx-0 relative z-10">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -110,22 +115,27 @@ export default function CampaignBanner() {
                         </span>
                     </div>
 
-                    <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif font-medium leading-tight text-white drop-shadow-lg">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium leading-tight text-white drop-shadow-lg relative z-10">
                         {translation?.title}
                     </h2>
 
                     {translation?.description && (
-                        <p className="text-sm md:text-base text-gray-300 font-light max-w-2xl mx-auto md:mx-0 line-clamp-2 md:line-clamp-1">
+                        <p className="text-sm md:text-base text-gray-200 font-light max-w-xl mx-auto md:mx-0 line-clamp-2 leading-relaxed relative z-10">
                             {translation.description}
                         </p>
                     )}
+
+                    {/* Button inside card for better grouping on mobile, or keep outside? Let's keep distinct actions outside or integrated. 
+                        User design shows separate button. I'll keep the button separate but aligned, or maybe move it inside?
+                        Moving inside makes it a complete "Card". Let offers stand out.
+                    */}
                 </div>
 
                 {/* Actions */}
                 <div className="flex items-center gap-4 shrink-0">
                     <Link
                         href={`/campaigns/${currentCampaign.id}`}
-                        className="group relative px-8 py-3 bg-white text-black font-bold uppercase tracking-widest text-xs overflow-hidden rounded-full transition-all hover:bg-gray-200"
+                        className="group relative px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-xs overflow-hidden rounded-full transition-all hover:bg-primary hover:text-white shadow-lg shadow-white/10 hover:shadow-primary/20"
                     >
                         <span className="relative z-10 flex items-center gap-2">
                             {language === 'tr' ? 'İncele' : 'View Details'}
@@ -135,7 +145,7 @@ export default function CampaignBanner() {
 
                     <button
                         onClick={() => setIsVisible(false)}
-                        className="p-2 text-white/50 hover:text-white transition-colors bg-white/5 hover:bg-white/10 rounded-full backdrop-blur-sm"
+                        className="p-3 text-white/50 hover:text-white transition-colors bg-black/20 hover:bg-black/40 rounded-full backdrop-blur-md border border-white/5"
                         aria-label="Close"
                     >
                         <X className="w-5 h-5" />
